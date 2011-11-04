@@ -1,0 +1,5 @@
+{
+    "ConnectionString": "Data Source=VMQADB1;Initial Catalog=CreditFulfillment;Persist Security Info=True;UID=CFWebUser;PWD=H4ppyFunB4ll",
+    "ReportTemplateRoot" : "C:\\Projects\\amoon\\SqlReports\\sql\\",
+    "ReportName": ""
+}
