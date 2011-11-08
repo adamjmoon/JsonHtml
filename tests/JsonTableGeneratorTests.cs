@@ -42,7 +42,7 @@ namespace JsonDataTable.Tests
         [TestMethod]
         public void Can_Generate_Google_Json_String_Table()
         {
-            var config = JsonConfigReader<SqlReportConfig>.GetConfig(@"C:\Projects\amoon\SiteAdmin\OneTechnologies.SiteAdministration\OneTechnologies.SiteAdmin.Portal\json\sqlReportConfig.json");
+            var config = JsonConfigReader<SqlReportConfig>.GetConfig(@"C:\Projects\JsonHtmlTable\json\sqlReportConfig.json");
             config.ReportName = "jobFiles";
 
             var jsonTableGenerator = new JsonHtmlTableGenerator(config);
@@ -55,7 +55,7 @@ namespace JsonDataTable.Tests
         [TestMethod]
         public void Can_Generate_DateTables_Json_String_Table()
         {
-            var config = JsonConfigReader<SqlReportConfig>.GetConfig(@"C:\Projects\amoon\SiteAdmin\OneTechnologies.SiteAdministration\OneTechnologies.SiteAdmin.Portal\json\sqlReportConfig.json");
+            var config = JsonConfigReader<SqlReportConfig>.GetConfig(@"C:\Projects\JsonHtmlTable\json\sqlReportConfig.json");
             config.ReportName = "jobFiles";
 
             var jsonTableGenerator = new JsonHtmlTableGenerator(config);

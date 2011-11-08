@@ -1,0 +1,16 @@
+﻿@{
+	ViewBag.Title = "Report Page";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#example').dataTable({
+            "bProcessing": true,
+            "sAjaxSource": '/Home/Report/GetReport'
+        });
+    });
+
+</script>
+
+<h2>@ViewBag.Message</h2>

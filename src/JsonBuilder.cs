@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace JsonHtmlTable
@@ -67,12 +68,21 @@ namespace JsonHtmlTable
             Json.Append(name != null ? WrapInQuotes(name) + ":" + WrapInQuotes(value) : WrapInQuotes(value));
         }
 
-         public void AppendProperty(string name, Type type, string value)
-    {
-            this.value = value;
-            Json.Append(WrapInQuotes(name) + ":");
-            typeGuide[type].Invoke();
-        }
+        public void AppendProperty(string name, Type type, string value)
+
+        {
+            this.value = value;
+
+            Json.Append(WrapInQuotes(name) + ":");
+
+            if (typeGuide.ContainsKey(type))
+                typeGuide[type].Invoke();
+            else
+            {
+                AppendStringValue();
+            }
+        }
+
         public void AppendProperty(Type type, string value)
         {
             this.value = value;
@@ -100,55 +110,55 @@ namespace JsonHtmlTable
 //            }
 //        }
 
-        public string WrapInQuotes(string s) 
-{
-        if (string.IsNullOrEmpty(s)) 
+        public string WrapInQuotes(string s)
         {
+            if (string.IsNullOrEmpty(s))
+            {
                 return "\"\"";
-        }
-        char         c;
-        int          i;
-        int          len = s.Length;
-        var sb = new StringBuilder(len + 4);
-        string       t;
+            }
+            char c;
+            int i;
+            int len = s.Length;
+            var sb = new StringBuilder(len + 4);
+            string t;
 
-        sb.Append('"');
-        for (i = 0; i < len; i += 1) 
-        {
+            sb.Append('"');
+            for (i = 0; i < len; i += 1)
+            {
                 c = s[i];
                 if ((c == '\\') || (c == '"') || (c == '>'))
                 {
-                        sb.Append('\\');
-                        sb.Append(c);
+                    sb.Append('\\');
+                    sb.Append(c);
                 }
                 else if (c == '\b')
-                        sb.Append("\\b");
+                    sb.Append("\\b");
                 else if (c == '\t')
-                        sb.Append("\\t");
+                    sb.Append("\\t");
                 else if (c == '\n')
-                        sb.Append("\\n");
+                    sb.Append("\\n");
                 else if (c == '\f')
-                        sb.Append("\\f");
+                    sb.Append("\\f");
                 else if (c == '\r')
-                        sb.Append("\\r");
+                    sb.Append("\\r");
                 else
                 {
-                        if (c < ' ') 
-                        {
-                                //t = "000" + Integer.toHexString(c);
-                                string tmp = new string(c,1);
-                                t = "000" + int.Parse(tmp,System.Globalization.NumberStyles.HexNumber);
-                                sb.Append("\\u" + t.Substring(t.Length - 4));
-                        } 
-                        else 
-                        {
-                                sb.Append(c);
-                        }
+                    if (c < ' ')
+                    {
+                        //t = "000" + Integer.toHexString(c);
+                        var tmp = new string(c, 1);
+                        t = "000" + int.Parse(tmp, NumberStyles.HexNumber);
+                        sb.Append("\\u" + t.Substring(t.Length - 4));
+                    }
+                    else
+                    {
+                        sb.Append(c);
+                    }
                 }
+            }
+            sb.Append('"');
+            return sb.ToString();
         }
-        sb.Append('"');
-        return sb.ToString();
-}
 
         public void Clear()
         {

@@ -1,0 +1,5 @@
+{
+    "ConnectionString": "Persist Security Info=False;Trusted_Connection=True;database=AdventureWorks;server=(local);",
+    "ReportTemplateRoot" : "C:\\Projects\\JsonHtmlTable\\examples\\SqlReportManager\\src\\sql\\",
+    "ReportName": "EmployeeList"
+}
