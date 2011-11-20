@@ -85,6 +85,9 @@ namespace JsonHtmlTable.Strategies
                             //{id: 'task', label: 'Task', type: 'string'},
 
                             col.AppendProperty("sTitle", colName);
+                            col.AppendComma();
+                            col.AppendProperty("type", "text");
+                            
                             col.WrapObject(null);
 
 

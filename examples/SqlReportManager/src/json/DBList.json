@@ -1,0 +1,43 @@
+[
+	{
+        "Selected" : true,
+        "Text" : "ApplicationLog",
+        "Value":"ApplicationLog"
+    },
+    {
+        "Selected" : false,
+        "Text" : "SpendOnLife",
+        "Value":"SpendOnLife"
+    },
+	{
+        "Selected" : false,
+        "Text" : "Tracking",
+        "Value":"Tracking"
+    },
+    {
+        "Selected" : false,
+        "Text" : "CreditFulfillment",
+        "Value":"CreditFulfillment"
+    },
+    {
+        "Selected" : false,
+		"Text" : "OTServices",
+        "Value":"OTServices"
+    },
+	{
+        "Selected" : false,
+		"Text" : "SiteAdmin",
+        "Value":"SiteAdmin"
+    },
+	{
+        "Selected" : false,
+		"Text" : "PPCManagement",
+        "Value":"PPCManagement"
+    },
+	{
+        "Selected" : false,
+		"Text" : "BidWarrior",
+        "Value":"BidWarrior"
+    }
+
+]

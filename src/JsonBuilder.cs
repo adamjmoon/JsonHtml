@@ -33,7 +33,7 @@ namespace JsonHtmlTable
 
         public void Append(string str)
         {
-            Json.Append(str);
+            Json.Append(str.Trim());
         }
 
         public void WrapArray(string arrayName)
@@ -49,7 +49,7 @@ namespace JsonHtmlTable
 
         public void AppendStringValue()
         {
-            Json.Append(WrapInQuotes(value));
+            Json.Append(WrapInQuotes(value.Trim()));
         }
 
         public void AppendNumberValue()
@@ -128,19 +128,29 @@ namespace JsonHtmlTable
                 c = s[i];
                 if ((c == '\\') || (c == '"') || (c == '>'))
                 {
-                    sb.Append('\\');
-                    sb.Append(c);
+                    sb.Append("");
+                    //sb.Append(c);
                 }
+               
+                
                 else if (c == '\b')
                     sb.Append("\\b");
                 else if (c == '\t')
                     sb.Append("\\t");
                 else if (c == '\n')
-                    sb.Append("\\n");
+                {
+                    sb.Append('\u003c');
+                    sb.Append("br/");
+                    sb.Append('\u003e');
+                }
+                 
                 else if (c == '\f')
                     sb.Append("\\f");
                 else if (c == '\r')
-                    sb.Append("\\r");
+                {
+                    sb.Append("");
+                }
+                    
                 else
                 {
                     if (c < ' ')
@@ -157,7 +167,7 @@ namespace JsonHtmlTable
                 }
             }
             sb.Append('"');
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
 
         public void Clear()

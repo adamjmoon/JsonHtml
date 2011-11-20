@@ -1,6 +1,9 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Web.Mvc;
 using JsonHtmlTable;
+using ServiceStack.Text;
 
 namespace SqlReportManager.Controllers
 {
@@ -15,10 +18,13 @@ namespace SqlReportManager.Controllers
 
         public ContentResult Report()
         {
-            var reportConfig =
-                JsonConfigReader<SqlReportConfig>.GetConfig(ConfigurationManager.AppSettings["SqlReportConfigPath"]);
+            var s = new JsonSerializer<List<ConnectionStringConfig>>();
+            
+            var x = s.DeserializeFromReader(new StreamReader(HttpContext.Server.MapPath("../json") +  "\\" + "ConnectionStrings.json"));
+            var reportConfig = new SqlReportConfig { ReportTemplateRoot = HttpContext.Server.MapPath("../sql") + "\\", ReportName = "employeeList", ConnectionString = "Data Source=CORPSPLRPTDB1;Initial Catalog=ApplicationLog;Persist Security Info=True;Trusted_Connection=True;" };
             var jsonHtmlTableGenerator = new JsonHtmlTableGenerator(reportConfig);
-            var jsonHtmlTable = jsonHtmlTableGenerator.GetTable(JsonHtmlTableType.DataTables);
+            var jsonHtmlTable = jsonHtmlTableGenerator.GetJsonTable(JsonHtmlTableType.DataTables);
+            
             return new ContentResult { Content = jsonHtmlTable, ContentType = "application/json" };
         }
 

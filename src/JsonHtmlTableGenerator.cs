@@ -31,11 +31,11 @@ namespace JsonHtmlTable
 
         public void SetJsonTableStrategy(JsonTableStrategy jsonTableStrategy)
         {
-            
+
             this.jsonTableStrategy = jsonTableStrategy;
         }
 
-        public string GetTable(JsonHtmlTableType type)
+        public string GetJsonTable(JsonHtmlTableType type)
         {
             jsonTableStrategyMap[type].Invoke();
             return jsonTableStrategy.GetJsonTableString();
@@ -54,7 +54,7 @@ namespace JsonHtmlTable
             return jsonTableStrategy.JsonTableDynamic;
         }
 
-        public string GetTable<T>(JsonHtmlTableType type, IList<T> entities)
+        public string GetJsonTable<T>(JsonHtmlTableType type, IList<T> entities)
         {
             jsonTableStrategyMap[type].Invoke();
             jsonTableStrategy.GenerateTable(entities);

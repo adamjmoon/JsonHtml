@@ -24,7 +24,7 @@ namespace JsonHtmlTable.Strategies
 
         protected string GetTypeStr(Type type)
         {
-             var  typeStrGuide = new Dictionary<Type, String>
+            var typeStrGuide = new Dictionary<Type, String>
                                {
                                    {typeof (Int32), "number"},
                                    {typeof (String), "string"},
@@ -32,10 +32,10 @@ namespace JsonHtmlTable.Strategies
                                    {typeof (Boolean), "boolean"}
                                };
 
-             if (typeStrGuide.ContainsKey(type))
-                 return typeStrGuide[type];
-             else
-                 return "string";
+            if (typeStrGuide.ContainsKey(type))
+                return typeStrGuide[type];
+            else
+                return "string";
 
         }
 
@@ -56,6 +56,10 @@ namespace JsonHtmlTable.Strategies
             var sqlTemplateReader = new SqlTemplateReader();
             var templatePath = config.ReportTemplateRoot + config.ReportName + ".sql";
             string sql = sqlTemplateReader.GetSql(templatePath).ToString();
+            if (!String.IsNullOrEmpty(config.WhereClause))
+            {
+            }
+
             using (var connection = new SqlConnection(config.ConnectionString))
             {
                 if (connection.State != ConnectionState.Open)

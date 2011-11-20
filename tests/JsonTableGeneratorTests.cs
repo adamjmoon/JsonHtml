@@ -47,7 +47,7 @@ namespace JsonDataTable.Tests
 
             var jsonTableGenerator = new JsonHtmlTableGenerator(config);
 
-            var jsonReport = jsonTableGenerator.GetTable(JsonHtmlTableType.Google);
+            var jsonReport = jsonTableGenerator.GetJsonTable(JsonHtmlTableType.Google);
             Assert.IsTrue(jsonReport.Length > 0);
 
         }
@@ -60,7 +60,7 @@ namespace JsonDataTable.Tests
 
             var jsonTableGenerator = new JsonHtmlTableGenerator(config);
 
-            string jsonStrTable = jsonTableGenerator.GetTable(JsonHtmlTableType.DataTables);
+            string jsonStrTable = jsonTableGenerator.GetJsonTable(JsonHtmlTableType.DataTables);
             
             Assert.IsTrue(jsonStrTable.Length > 0);
         }

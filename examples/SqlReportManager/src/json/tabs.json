@@ -1,0 +1,100 @@
+{
+    "elements" :
+        [
+            {
+                 "type" : "span",
+                 "html" : " Server: "
+            },
+            {
+                 "type" : "select",
+                 "id" : "serverList",
+                 "style" : "width: 200px; margin:5px;"
+            },
+            {
+                 "type" : "span",
+                 "html" : " Database: "
+            },
+            {
+                 "type" : "select",
+                 "id" : "dbList",
+                 "style" : "width: 200px; margin:5px;"
+            },
+            {
+                 "type" : "span",
+                 "html" : " Report: "
+            },
+            {
+                 "type" : "select",
+                 "id" : "reportList",
+                 "style" : "width: 200px; margin:5px;"
+            },
+            {
+                 "type" : "label",
+                 "id" : "pullReport",
+                 "html" : "Pull Report",
+                 "class" : "ui-corner-all ui-widget pad ui-state-default",
+                 "style" : "width: 100px; margin:5px;"
+            },
+            {
+                 "type" : "label",
+                 "id" : "loading",
+                 "html" : "Loading Report ...",
+                 "class" : "ui-corner-all ui-widget pad ui-state-highlight",
+                 "style" : "width: 100px; margin:5px;"
+            },
+            {
+                 "type" : "container",
+                 "id" : "fileupload",
+                 "html" : ""
+            },
+            {
+                 "type" : "tabs",
+                 "id" : "tabs",
+                 "entries" :
+                 {
+                     "reportTab":
+                     {
+                         "caption" : "Report",
+                         "elements" :
+                         [
+                             {
+                                 "type" : "container",
+                                 "html" : "<div id='datatable-wrapper'></div>"
+                             }
+
+                         ]
+                     },
+                     "sqlTab" :
+                     {
+                         "id" : "sqlTab",
+                         "caption" : "Sql",
+                         "elements" :
+                         [
+                             {
+                                 "id" : "sqlTextArea",
+                                 "type" : "textarea",
+                                 "class": "grid_7",
+                                 "style" : "margin: 5px;"
+
+                             },
+                              {
+                                     "type" : "text",
+                                     "id" : "reportName",
+                                     "placeholder" : "Report Name",
+                                     "html" : "",
+                                     "class" : "ui-corner-all ui-widget pad",
+                                     "style" : "width: 300px; margin:5px;"
+                                },
+                              {
+                                     "type" : "label",
+                                     "id" : "saveReport",
+                                     "html" : "Save Report",
+                                     "class" : "ui-corner-all ui-widget pad ui-state-focus",
+                                     "style" : "width: 100px; margin:5px;"
+                                }
+                         ]
+                     }
+                 }
+            }
+        ]
+}

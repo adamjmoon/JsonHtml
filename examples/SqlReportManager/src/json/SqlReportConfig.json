@@ -1,5 +1,5 @@
 {
-    "ConnectionString": "Persist Security Info=False;Trusted_Connection=True;database=AdventureWorks;server=(local);",
+    "ConnectionString": "Persist Security Info=False;Trusted_Connection=True;database=ApplicationLog;server=vmqadb2;",
     "ReportTemplateRoot" : "C:\\Projects\\JsonHtmlTable\\examples\\SqlReportManager\\src\\sql\\",
     "ReportName": "EmployeeList"
 }
