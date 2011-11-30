@@ -8,11 +8,11 @@
         public string WhereClause { get; set; }
     }
 
-
     public class SqlReport
     {
         public string ReportName { get; set; }
         public string Sql { get; set; }
+        public string DB { get; set; }
     }
 
     public class SqlReportRequest

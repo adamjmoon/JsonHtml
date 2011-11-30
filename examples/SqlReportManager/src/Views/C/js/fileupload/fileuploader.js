@@ -102,13 +102,13 @@ qq.contains = function(parent, descendant){
  * Uses innerHTML to create an element
  */
 qq.toElement = (function(){
-    var div = document.createElement('div');
-    return function(html){
-        div.innerHTML = html;
-        var element = div.firstChild;
-        div.removeChild(element);
-        return element;
-    };
+ //   var div = document.createElement('div');
+  //  return function(html){
+       // div.innerHTML = html;
+       // var element = div.firstChild;
+       // div.removeChild(element);
+      //  return element;
+   // };
 })();
 
 //
@@ -485,19 +485,12 @@ qq.FileUploader = function(o){
         listElement: null,
 
         template: '<div class="qq-uploader">' +
-                '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
-                '<div class="qq-upload-button">Upload a file</div>' +
+                '<div class="qq-upload-button">Upload SQL file</div>' +
                 '<ul class="qq-upload-list"></ul>' +
              '</div>',
 
         // template for one item in file list
-        fileTemplate: '<li>' +
-                '<span class="qq-upload-file"></span>' +
-                '<span class="qq-upload-spinner"></span>' +
-                '<span class="qq-upload-size"></span>' +
-                '<a class="qq-upload-cancel" href="#">Cancel</a>' +
-                '<span class="qq-upload-failed-text">Failed</span>' +
-            '</li>',
+        fileTemplate: '',
 
         classes: {
             // used to get elements from templates
@@ -548,78 +541,78 @@ qq.extend(qq.FileUploader.prototype, {
         return element;
     },
     _setupDragDrop: function(){
-        var self = this,
-            dropArea = this._find(this._element, 'drop');
-
-        var dz = new qq.UploadDropZone({
-            element: dropArea,
-            onEnter: function(e){
-                qq.addClass(dropArea, self._classes.dropActive);
-                e.stopPropagation();
-            },
-            onLeave: function(e){
-                e.stopPropagation();
-            },
-            onLeaveNotDescendants: function(e){
-                qq.removeClass(dropArea, self._classes.dropActive);
-            },
-            onDrop: function(e){
-                dropArea.style.display = 'none';
-                qq.removeClass(dropArea, self._classes.dropActive);
-                self._uploadFileList(e.dataTransfer.files);
-            }
-        });
-
-        dropArea.style.display = 'none';
-
-        qq.attach(document, 'dragenter', function(e){
-            if (!dz._isValidFileDrag(e)) return;
-
-            dropArea.style.display = 'block';
-        });
-        qq.attach(document, 'dragleave', function(e){
-            if (!dz._isValidFileDrag(e)) return;
-
-            var relatedTarget = document.elementFromPoint(e.clientX, e.clientY);
-            // only fire when leaving document out
-            if ( ! relatedTarget || relatedTarget.nodeName == "HTML"){
-                dropArea.style.display = 'none';
-            }
-        });
+//        var self = this,
+//            dropArea = this._find(this._element, 'drop');
+//
+//        var dz = new qq.UploadDropZone({
+//            element: dropArea,
+//            onEnter: function(e){
+//                qq.addClass(dropArea, self._classes.dropActive);
+//                e.stopPropagation();
+//            },
+//            onLeave: function(e){
+//                e.stopPropagation();
+//            },
+//            onLeaveNotDescendants: function(e){
+//                qq.removeClass(dropArea, self._classes.dropActive);
+//            },
+//            onDrop: function(e){
+//                dropArea.style.display = 'none';
+//                qq.removeClass(dropArea, self._classes.dropActive);
+//                self._uploadFileList(e.dataTransfer.files);
+//            }
+//        });
+//
+//        dropArea.style.display = 'none';
+//
+//        qq.attach(document, 'dragenter', function(e){
+//            if (!dz._isValidFileDrag(e)) return;
+//
+//            dropArea.style.display = 'block';
+//        });
+//        qq.attach(document, 'dragleave', function(e){
+//            if (!dz._isValidFileDrag(e)) return;
+//
+//            var relatedTarget = document.elementFromPoint(e.clientX, e.clientY);
+//            // only fire when leaving document out
+//            if ( ! relatedTarget || relatedTarget.nodeName == "HTML"){
+//                dropArea.style.display = 'none';
+//            }
+//        });
     },
     _onSubmit: function(id, fileName){
         qq.FileUploaderBasic.prototype._onSubmit.apply(this, arguments);
-        this._addToList(id, fileName);
+       // this._addToList(id, fileName);
     },
     _onProgress: function(id, fileName, loaded, total){
-        qq.FileUploaderBasic.prototype._onProgress.apply(this, arguments);
-
-        var item = this._getItemByFileId(id);
-        var size = this._find(item, 'size');
-        size.style.display = 'inline';
-
-        var text;
-        if (loaded != total){
-            text = Math.round(loaded / total * 100) + '% from ' + this._formatSize(total);
-        } else {
-            text = this._formatSize(total);
-        }
-
-        qq.setText(size, text);
+//        qq.FileUploaderBasic.prototype._onProgress.apply(this, arguments);
+//
+//        var item = this._getItemByFileId(id);
+//        var size = this._find(item, 'size');
+//        size.style.display = 'inline';
+//
+//        var text;
+//        if (loaded != total){
+//            text = Math.round(loaded / total * 100) + '% from ' + this._formatSize(total);
+//        } else {
+//            text = this._formatSize(total);
+//        }
+//
+//        qq.setText(size, text);
     },
     _onComplete: function(id, fileName, result){
         qq.FileUploaderBasic.prototype._onComplete.apply(this, arguments);
 
         // mark completed
-        var item = this._getItemByFileId(id);
-        qq.remove(this._find(item, 'cancel'));
-        qq.remove(this._find(item, 'spinner'));
-
-        if (result.success){
-            qq.addClass(item, this._classes.success);
-        } else {
-            qq.addClass(item, this._classes.fail);
-        }
+//        var item = this._getItemByFileId(id);
+//        qq.remove(this._find(item, 'cancel'));
+//        qq.remove(this._find(item, 'spinner'));
+//
+//        if (result.success){
+//            qq.addClass(item, this._classes.success);
+//        } else {
+//            qq.addClass(item, this._classes.fail);
+//        }
     },
     _addToList: function(id, fileName){
         var item = qq.toElement(this._options.fileTemplate);
@@ -1194,7 +1187,8 @@ qq.extend(qq.UploadHandlerXhr.prototype, {
 
         // build query string
         params = params || {};
-        params['qqfile'] = name;
+        params['fileName'] = name;
+        params['DB'] = SqlReportManager.Selected.DB;
         var queryString = qq.obj2url(params, this._options.action);
 
         xhr.open("POST", queryString, true);

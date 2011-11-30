@@ -95,65 +95,13 @@ Remove this if you use the .htaccess -->
     function done() {
         $(document).ready(function () {
 
-            $("#container").buildForm("/json/tabs.json", null, init);
+            $("#container").buildForm("/json/tabs.json", null, SqlReportManager.Init);
 
         });
     }
-
-    function init() {
-         $("#loading").hide();
-         $("#tabs").hide();
-
-        $.getJSON("/json/ServerList.json", null, function (data) {
-            $("#serverList").fillSelect(data);
-        });
-
-        $.getJSON("/json/DBList.json", null, function (data) {
-            $("#dbList").fillSelect(data);
-        });
-        $.getJSON("/Report/List", null, function (data) {
-            $("#reportList").fillSelect(data);
-        });
-
-
-        // selection onchange
-        $("#dbList").change(function () {
-            SqlReportManager.Selected.DB = $("#dbList option:selected").text();
-        });
-
-        $("#serverList").change(function () {
-            SqlReportManager.Selected.Server = $("#serverList option:selected").text();
-        });
-
-        $("#reportList").change(function () {
-            SqlReportManager.Selected.Report = $("#reportList option:selected").text();
-        });
-
-        $("#filter").click(function () {
-            SqlReportManager.Selected.WhereClause = $("#filter").text();
-            SqlReportManager.LoadTable();
-        });
-
-
-        var pullReport = $("#pullReport").click(function () {
-            $("#loading").fadeIn();
-            $("#filter").val("");
-            SqlReportManager.LoadTable();
-            SqlReportManager.LoadSql();
-            $("#tabs").delay(1000).fadeIn();
-
-        });
-
-        $("#reportTab").height(SqlReportManager.pageHeight);
-        $("#sqlTab").height(SqlReportManager.pageHeight);
-        $('#datatable-wrapper').width(SqlReportManager.windowWidth - 10);
-        $('#sqlTextArea').width(SqlReportManager.windowWidth - 10).height(SqlReportManager.pageHeight - 100);
-
-    }
-    ;
 
     $LAB
-            .script("https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js")
+            .script("https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js").wait()
             .script("Views/C/js/DataTables-1.8.2/media/js/jquery.dataTables.js")
             .script("Views/C/jquery/js/jquery-ui-1.8.16.custom.min.js")
             .script("Views/C/js/JQuery-DataTables-ColumnFilter/media/js/jquery.dataTables.columnFilter.js")
@@ -161,9 +109,8 @@ Remove this if you use the .htaccess -->
             .script("Views/C/js/TableTools-2.0.1/media/js/TableTools.min.js")
             .script("Views/C/js/libs/jquery.dform-0.1.3.min.js")
             .script("Views/C/js/libs/jquery.fillSelect.js")
-            .script("Views/C/js/libs/ColReorderWithResize.js")
-            .script("Views/C/js/fileupload/fileuploader.js")
-            .script("Views/C/js/mylibs/sqlReportManager.Module.js")
+            .script("Views/C/js/fileupload/fileuploader.js").wait()
+            .script("Views/C/js/mylibs/sqlReportManager.Module.js").wait()
             .script("Views/C/js/mylibs/sqlReportManager.Table.js")
             .wait(done);
 

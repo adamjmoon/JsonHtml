@@ -43,9 +43,19 @@
                  "style" : "width: 100px; margin:5px;"
             },
             {
+                 "type" : "label",
+                 "id" : "successStatus",
+                 "html" : "File Uploaded Successfully",
+                 "class" : "ui-corner-all ui-widget pad hide ui-state-highlight",
+                 "style" : "width: 100px; margin:5px;"
+            },
+            {
                  "type" : "container",
                  "id" : "fileupload",
-                 "html" : ""
+                 "html" : "",
+                "class" : "ui-corner-all ui-widget pad ui-state-default",
+                "style" :  "float: right; margin:5px;"
+
             },
             {
                  "type" : "tabs",
