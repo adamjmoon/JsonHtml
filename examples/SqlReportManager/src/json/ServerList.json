@@ -1,7 +1,38 @@
 [
 	{
-        "Selected" : true,
+        "Selected" : false,
         "Text" : "localhost",
         "Value":"localhost"
+    },
+    {
+        "Selected" : false,
+        "Text" : "VMIDB1",
+        "Value":"VMIDB1"
+    },
+	{
+        "Selected" : false,
+        "Text" : "VMIDB2",
+        "Value": "VMIDB2"
+    },
+    {
+        "Selected" : false,
+        "Text" : "VMQADB1",
+        "Value":"VMQADB1"
+    },
+    {
+        "Selected" : false,
+		"Text" : "VMQADB2",
+        "Value":"VMQADB2"
+    },
+	{
+        "Selected" : true,
+		"Text" : "CORPSPLRPTDB1",
+        "Value":"CORPSPLRPTDB1"
+    },
+	{
+        "Selected" : false,
+		"Text" : "CORPRESDB1",
+        "Value": "CORPRESDB1"
     }
+
 ]

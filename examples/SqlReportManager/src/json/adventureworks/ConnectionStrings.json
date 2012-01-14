@@ -1,0 +1,7 @@
+[
+ {
+    "DB" : "AdventureWorks",
+    "Server" : "localhost",
+    "ConnectionString": "Persist Security Info=False;Trusted_Connection=True;database=AdventureWorks;server=(local);"
+ }
+]

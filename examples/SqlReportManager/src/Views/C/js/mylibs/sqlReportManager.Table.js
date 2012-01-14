@@ -28,6 +28,7 @@ var SqlReportManager = (function (parent, $) {
                         json.bDestroy = true;
                         json.bJQueryUI = true;
                         json.sPaginationType = "full_numbers";
+                        json.iDisplayLength = 50;
                         json.aLengthMenu = [
                             [5, 10, 25, 50, -1],
                             [5, 10, 25, 50, "All"]
@@ -82,8 +83,8 @@ var SqlReportManager = (function (parent, $) {
         $('a[href*="#reportTab"]').click();
         $("#loading").fadeIn();
         $("#filter").val("");
-        SqlReportManager.LoadTable();
         SqlReportManager.LoadSql();
+        SqlReportManager.LoadTable();
         $("#tabs").delay(100).fadeIn();
 
         return false;

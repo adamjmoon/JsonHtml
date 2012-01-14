@@ -1082,7 +1082,6 @@
     <Content Include="Views\C\js\libs\LAB.min.js" />
     <Content Include="Views\C\js\libs\modernizr-1.7.min.js" />
     <Content Include="Views\C\js\mylibs\.gitignore" />
-    <Content Include="Views\C\js\mylibs\openid-jquery.js" />
     <Content Include="Views\C\js\plugins.js" />
     <Content Include="Views\C\js\script.js" />
     <Content Include="Views\C\js\TableTools-2.0.1\alter_buttons.html" />
@@ -1137,7 +1136,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\MyAccount.cshtml" />
     <Content Include="packages.config" />
-    <None Include="json\SqlReportConfig.json" />
     <None Include="Views\Account\_OpenId.cshtml" />
     <Content Include="Views\Home\Report.cshtml" />
     <None Include="Views\C\img\Sorting icons.psd" />
@@ -1224,11 +1222,12 @@
   <ItemGroup>
     <Folder Include="App\" />
     <Folder Include="App_Data\" />
+    <Folder Include="json\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\JsonHtmlTable.csproj">
+    <ProjectReference Include="..\..\..\src\JsonHtml.csproj">
       <Project>{24698B71-7F55-48F1-8610-88CECEE8BA63}</Project>
-      <Name>JsonHtmlTable</Name>
+      <Name>JsonHtml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

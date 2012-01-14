@@ -135,15 +135,15 @@ namespace SqlReportManager.Controllers
 
         private List<ConnectionStringConfig> ConnectionStrings()
         {
-            var serializer = new JsonSerializer<List<ConnectionStringConfig>>();
-            var connectionStrings =
-                serializer.DeserializeFromReader(
-                    new StreamReader(BaseReportConfig().ReportTemplateRoot.Replace("sql", "json") +
-                                     "ConnectionStrings.json"));
+            
+            using(var reader = new StreamReader(BaseReportConfig().ReportTemplateRoot.Replace("sql", "json") + "ConnectionStrings.json"))
+            {
+                var serializer = new JsonSerializer<List<ConnectionStringConfig>>();
+                var connectionStrings = serializer.DeserializeFromReader(reader);                           
+                System.Web.HttpContext.Current.Cache.Insert("ConnectionStrings", connectionStrings);
 
-            System.Web.HttpContext.Current.Cache.Insert("ConnectionStrings", connectionStrings);
-
-            return connectionStrings;
+                return connectionStrings;
+            }
         }
     }
 }
