@@ -1082,6 +1082,8 @@
     <Content Include="Views\C\js\libs\LAB.min.js" />
     <Content Include="Views\C\js\libs\modernizr-1.7.min.js" />
     <Content Include="Views\C\js\mylibs\.gitignore" />
+    <Content Include="Views\C\js\mylibs\sqlReportManager.Module.js" />
+    <Content Include="Views\C\js\mylibs\sqlReportManager.Table.js" />
     <Content Include="Views\C\js\plugins.js" />
     <Content Include="Views\C\js\script.js" />
     <Content Include="Views\C\js\TableTools-2.0.1\alter_buttons.html" />
@@ -1137,7 +1139,6 @@
     <Content Include="Views\Account\MyAccount.cshtml" />
     <Content Include="packages.config" />
     <None Include="Views\Account\_OpenId.cshtml" />
-    <Content Include="Views\Home\Report.cshtml" />
     <None Include="Views\C\img\Sorting icons.psd" />
     <None Include="Views\C\js\DataTables-1.8.2\examples\examples_support\editable_ajax.php" />
     <None Include="Views\C\js\DataTables-1.8.2\examples\examples_support\infiniteScroll.php" />

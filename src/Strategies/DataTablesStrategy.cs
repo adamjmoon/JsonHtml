@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
 
-namespace JsonHtmlTable.Strategies
+namespace JsonHtml.Strategies
 {
     public class DataTablesStrategy : JsonTableStrategy
     {
@@ -144,63 +144,7 @@ namespace JsonHtmlTable.Strategies
 
         protected override void GenerateDynamicTable(SqlDataReader reader)
         {
-            dynamic dataTable = new { 
-                                          cols = new List<object>(),
-                                          rows = new List<object>()
-                                      };
-
-            var rowId = 0; object value; string colName; Type type;
-            dynamic row; dynamic col; dynamic cell;
-
-            var canRead = reader.Read();
-            if (canRead)
-                do
-                {
-                    row = new {c = new List<object>()};
-                    // increment row
-                    rowId++;
-
-                    for (int index = 0; index < reader.FieldCount; index++)
-                    {
-                        type = reader.GetFieldType(index);
-                        value = reader.GetValue(index);
-                        colName = reader.GetName(index);
-
-                        // build list of columns with just the columns from the first row
-                        if (rowId == 1)
-                        {
-                            col = new
-                                      {
-                                          id = colName,
-                                          label = colName,
-                                          type = GetTypeStr(type)
-                                      };
-                            dataTable.cols.Add(col);
-                        }
-
-                        dynamic val;
-                        if (value is DBNull)
-                            val = "";
-                        else if (value is DateTime)
-                            val = value.ToString();
-                        else
-                            val = value;
-
-                        cell = new {v = val};
-
-                        row.c.Add(cell);
-                    }
-
-                    dataTable.rows.Add(row);
-
-                    // read next field
-                    canRead = reader.Read();
-                } while (canRead);
-
-            // close reader
-            reader.Close();
-
-            this.JsonTableDynamic = dataTable;
+            throw new NotImplementedException();
         }
 
         public override void GenerateTable<T>(IList<T> entities)
@@ -208,60 +152,60 @@ namespace JsonHtmlTable.Strategies
             throw new NotImplementedException();
         }
 
+
         public override void GenerateDynamicTable<T>(IList<T> entities)
         {
             dynamic dataTable = new
-                                      {
-                                          cols = new List<object>(),
-                                          rows = new List<object>()
-                                      };
-
-            var rowId = 0; object value; string colName; Type type;
-            dynamic row; dynamic col; dynamic cell;
-
-           foreach(var entity in entities)
             {
-                row = new {c = new List<object>()};
+                aaSorting = new List<List<string>>(),
+                aaData = new List<List<string>>(),
+                aoColumns = new List<object>()
+            };
+
+            int rowId = 0;
+            object value;
+            string colName;
+            Type type;
+            List<string> row;
+            object col;
+
+            foreach (T entity in entities)
+            {
+                
                 // increment row
                 rowId++;
+                row = new List<string>();
+                var propertyInfos = entity.GetType().GetProperties();
 
-                var propertyInfos = entity.GetType().GetProperties(BindingFlags.Public |
-                                                                   BindingFlags.Static);
-                
-                foreach(var propertyInfo in propertyInfos)
+                foreach (var propertyInfo in propertyInfos)
                 {
-                    
                     type = propertyInfo.PropertyType;
-                    value = propertyInfo.GetValue(null,null);
+                    value = propertyInfo.GetValue(entity, null);
+
                     colName = propertyInfo.Name;
 
                     if (rowId == 1)
                     {
                         col = new
-                                  {
-                                      id = colName,
-                                      label = colName,
-                                      type = GetTypeStr(type)
-                                  };
-                        dataTable.cols.Add(col);
+                        {
+                            sTitle = colName,
+                            type = GetTypeStr(type)
+                        };
+                        dataTable.aoColumns.Add(col);
                     }
 
-                    dynamic val;
+                    string val;
                     if (value == null)
                         val = "";
-                    else if (value is DateTime)
-                        val = value.ToString();
                     else
-                        val = value;
+                        val = value.ToString();
 
-                    cell = new { v = val };
-
-                    row.c.Add(cell);
+                    row.Add(val);
                 }
 
-                dataTable.rows.Add(row);
+                dataTable.aaData.Add(row);
             }
-
+            dataTable.aaSorting.Add(new List<string> {"2", "desc"});
             this.JsonTableDynamic = dataTable;
         }
     }

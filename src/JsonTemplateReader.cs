@@ -2,7 +2,7 @@ using System.IO;
 using System.Text;
 using ServiceStack.Text;
 
-namespace JsonHtmlTable
+namespace JsonHtml
 {
     public static class JsonConfigReader<T>
     {

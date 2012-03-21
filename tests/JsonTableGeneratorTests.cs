@@ -1,4 +1,4 @@
-﻿using JsonHtmlTable;
+﻿using JsonHtml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JsonDataTable.Tests

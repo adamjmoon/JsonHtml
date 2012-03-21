@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
 
-namespace JsonHtmlTable.Strategies
+namespace JsonHtml.Strategies
 {
     public class GoogleTableStrategy : JsonTableStrategy
     {

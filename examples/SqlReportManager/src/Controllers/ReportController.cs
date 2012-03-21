@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using JsonHtmlTable;
+using JsonHtml;
 using ServiceStack.Text;
 
 namespace SqlReportManager.Controllers

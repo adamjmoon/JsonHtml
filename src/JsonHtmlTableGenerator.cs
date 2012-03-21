@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using JsonHtmlTable.Strategies;
+using JsonHtml.Strategies;
 
-namespace JsonHtmlTable
+namespace JsonHtml
 {
     public class JsonHtmlTableGenerator
     {

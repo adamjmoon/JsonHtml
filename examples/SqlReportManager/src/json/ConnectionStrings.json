@@ -2,17 +2,17 @@
  {
     "DB" : "ApplicationLog",
     "Server" : "CORPSPLRPTDB1",
-    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=ApplicationLog;Persist Security Info=True;UID=ReportUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=ApplicationLog;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "ApplicationLog",
     "Server" : "VMQADB2",
-    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=ApplicationLog;Persist Security Info=True;UID=ApplicationLogUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=ApplicationLog;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "ApplicationLog",
     "Server" : "VMIDB2",
-    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=ApplicationLog;Persist Security Info=True;UID=ApplicationLogUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=ApplicationLog;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "ApplicationLog",
@@ -22,17 +22,17 @@
   {
     "DB" : "SpendOnLife",
     "Server" : "CORPSPLRPTDB1",
-    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=SpendOnLife;Persist Security Info=True;UID=SPLWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=SpendOnLife;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "SpendOnLife",
     "Server" : "VMQADB2",
-    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=SpendOnLife;Persist Security Info=True;UID=SPLWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=SpendOnLife;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "SpendOnLife",
     "Server" : "VMIDB2",
-    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=SpendOnLife;Persist Security Info=True;UID=SPLWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=SpendOnLife;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "SpendOnLife",
@@ -42,17 +42,17 @@
  {
     "DB" : "Tracking",
     "Server" : "CORPSPLRPTDB1",
-    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=Tracking;Persist Security Info=True;UID=SPLWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=Tracking;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "Tracking",
     "Server" : "VMQADB2",
-    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=Tracking;Persist Security Info=True;UID=SPLWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=Tracking;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "Tracking",
     "Server" : "VMIDB2",
-    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=Tracking;Persist Security Info=True;UID=SPLWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=Tracking;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "Tracking",
@@ -67,12 +67,12 @@
   {
     "DB" : "CreditFulfillment",
     "Server" : "VMQADB1",
-    "ConnectionString": "Data Source=VMQADB1;Initial Catalog=CreditFulfillment;Persist Security Info=True;UID=CFWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMQADB1;Initial Catalog=CreditFulfillment;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "CreditFulfillment",
     "Server" : "VMIDB2",
-    "ConnectionString": "Data Source=VMIDB1;Initial Catalog=CreditFulfillment;Persist Security Info=True;UID=CFWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMIDB1;Initial Catalog=CreditFulfillment;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "CreditFulfillment",
@@ -82,17 +82,17 @@
  {
     "DB" : "SiteAdmin",
     "Server" : "CORPRESDB1",
-    "ConnectionString": "Data Source=CORPRESDB1;Initial Catalog=SiteAdmin;Persist Security Info=True;UID=SiteAdminWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=CORPRESDB1;Initial Catalog=SiteAdmin;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "SiteAdmin",
     "Server" : "VMQADB1",
-    "ConnectionString": "Data Source=VMQADB1;Initial Catalog=SiteAdmin;Persist Security Info=True;UID=SiteAdminWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMQADB1;Initial Catalog=SiteAdmin;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "SiteAdmin",
     "Server" : "VMIDB1",
-    "ConnectionString": "Data Source=VMIDB1;Initial Catalog=SiteAdmin;Persist Security Info=True;UID=SiteAdminWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMIDB1;Initial Catalog=SiteAdmin;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "SiteAdmin",
@@ -102,17 +102,17 @@
  {
     "DB" : "OTServices",
     "Server" : "CORPRESDB1",
-    "ConnectionString": "Data Source=CORPRESDB1;Initial Catalog=OTServices;Persist Security Info=True;UID=OTSvcWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=CORPRESDB1;Initial Catalog=OTServices;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "OTServices",
     "Server" : "VMQADB1",
-    "ConnectionString": "Data Source=VMQADB1;Initial Catalog=OTServices;Persist Security Info=True;UID=OTSvcWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMQADB1;Initial Catalog=OTServices;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "OTServices",
     "Server" : "VMIDB1",
-    "ConnectionString": "Data Source=VMIDB1;Initial Catalog=OTServices;Persist Security Info=True;UID=OTSvcWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMIDB1;Initial Catalog=OTServices;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "OTServices",
@@ -122,17 +122,17 @@
  {
     "DB" : "PPCManagement",
     "Server" : "CORPRESDB1",
-    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=PPCManagement;Persist Security Info=True;UID=PPCMIWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=PPCManagement;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "PPCManagement",
     "Server" : "VMQADB2",
-    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=PPCManagement;Persist Security Info=True;UID=PPCMIWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=PPCManagement;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "PPCManagement",
     "Server" : "VMIDB2",
-    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=PPCManagement;Persist Security Info=True;UID=PPCMIWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=PPCManagement;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "PPCManagement",
@@ -142,17 +142,17 @@
  {
     "DB" : "BidWarrior",
     "Server" : "CORPRESDB1",
-    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=BidWarrior;Persist Security Info=True;UID=PPCMIWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=CORPSPLRPTDB1;Initial Catalog=BidWarrior;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "BidWarrior",
     "Server" : "VMQADB2",
-    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=BidWarrior;Persist Security Info=True;UID=PPCMIWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMQADB2;Initial Catalog=BidWarrior;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "BidWarrior",
     "Server" : "VMIDB2",
-    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=BidWarrior;Persist Security Info=True;UID=PPCMIWebUser;PWD=H4ppyFunB4ll;"
+    "ConnectionString": "Data Source=VMIDB2;Initial Catalog=BidWarrior;Persist Security Info=False;Trusted_Connection=True;"
  },
   {
     "DB" : "BidWarrior",

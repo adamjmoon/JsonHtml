@@ -1,40 +1,40 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Dynamic;
 using System.Reflection;
-using System.Web.UI.WebControls;
-using JsonHtmlTable.Strategies;
 using ServiceStack.Text;
 
-namespace JsonHtmlTable
+namespace JsonHtml
 {
-    public class JsonHtmlForm
+    public interface IJsonHtmlForm
     {
+        dynamic GenerateDynamicForm(Type type, string desc);
+    }
 
-        private String id;
-        private String name;
-        private String caption;
+    public class JsonHtmlForm : IJsonHtmlForm
+    {
+        protected Dictionary<string, Func<dynamic>> nameElementAction = new Dictionary<string, Func<dynamic>>();
+        protected Dictionary<Type, Func<dynamic>> typeElementAction = new Dictionary<Type, Func<dynamic>>();
+        protected String caption;
+        protected String id;
+        protected String name;
 
-         private Dictionary<string, Func<dynamic>> nameElementAction = new Dictionary<string, Func<dynamic>>();
-         private Dictionary<Type, Func<dynamic>> typeElementAction = new Dictionary<Type, Func<dynamic>>();
+        public JsonHtmlForm()
+        {
+            nameElementAction.Add("email", () => EmailField());
+            nameElementAction.Add("description", () => TextArea());
+            nameElementAction.Add("password", () => PasswordField());
+            nameElementAction.Add("confirm_password", () => PasswordRepeatField());
+            nameElementAction.Add("gender", () => GenderField());
+            nameElementAction.Add("state", () => StateAutoComplete());
 
-         public JsonHtmlForm()
-         {
-             nameElementAction.Add("email", () => EmailField());
-             nameElementAction.Add("password", () => PasswordField());
-             nameElementAction.Add("passwordRepeat", () => PasswordRepeatField());
-             nameElementAction.Add("gender", () => GenderField());
-             nameElementAction.Add("state", () => StateAutoComplete());
+            typeElementAction.Add(typeof (String), () => TextBox());
+            typeElementAction.Add(typeof (Int32), () => TextBox());
+            typeElementAction.Add(typeof (Decimal), () => TextBox());
+            typeElementAction.Add(typeof (DateTime), () => DatePicker());
+            typeElementAction.Add(typeof (Boolean), () => BooleanCheckbox());
+        }
 
-             typeElementAction.Add(typeof(String), () => TextBox());
-             typeElementAction.Add(typeof(Int32), () => TextBox());
-             typeElementAction.Add(typeof(Decimal), () => TextBox());
-             typeElementAction.Add(typeof(DateTime), () => DatePicker());
-             typeElementAction.Add(typeof(Boolean), () => BooleanCheckbox());
-         }
 
-       
 /*
         {
     "action" : "index.html",
@@ -152,74 +152,75 @@ namespace JsonHtmlTable
         },
       
         {
-            "type" : "submit",
+            "type" : "submit",  
             "value" : "Signup"
         }
     ]
 }*/
 
-        private dynamic EmailField()
+        protected dynamic EmailField()
         {
             dynamic email = new
                                 {
-                                    name = name,
-                                    id = id,
-                                    caption = caption,
+                                    name,
+                                    id,
+                                    caption,
                                     type = "text",
                                     placeholder = "E.g. user@example.com",
-                                    validate = new { email = true}
+                                    validate = new {email = true}
                                 };
             return email;
-
         }
 
-        private dynamic PasswordField()
+        protected dynamic PasswordField()
         {
             dynamic password = new
                                    {
-                                       name = "",
-                                       id = "",
-                                       caption = "",
-                                       type = "password",
-                                       validate = new { required = true,
-                                                        minlength = 5,
-                                                        message = new {
-                                                             required = "Please enter a password",
-                                                             minlength = "At least {0} characters long"
-                                                          }
-                                                      }
-                                   };
-            
-
-            return password;
-
-        }
-
-
-        private dynamic PasswordRepeatField()
-        {
-            dynamic password = new
-                                   {
-                                       name = name,
-                                       id = id,
-                                       caption = caption,
+                                       name,
+                                       id,
+                                       caption,
                                        type = "password",
                                        validate = new
-                                       {
-                                           required = true,
-                                           minlength = 5,
-                                           message = new
-                                           {
-                                               equalTo = "#password"
-                                           }
-                                       }
+                                                      {
+                                                          required = true,
+                                                          minlength = 5,
+                                                          message = new
+                                                                        {
+                                                                            required = "Please enter a password",
+                                                                            minlength = "At least {0} characters long"
+                                                                        }
+                                                      }
                                    };
-           
+
 
             return password;
         }
 
-        private dynamic StateAutoComplete()
+
+        protected dynamic PasswordRepeatField()
+        {
+            dynamic password = new
+                                   {
+                                       name,
+                                       id,
+                                       caption,
+                                       type = "password",
+                                       validate = new
+                                                      {
+                                                          required = true,
+                                                          minlength = 5,
+                                                          message = new
+                                                                        {
+                                                                            equalTo = "#password"
+                                                                        }
+                                                      }
+                                   };
+
+
+            return password;
+        }
+
+        protected dynamic StateAutoComplete()
         {
 //            {
 //            "name" : "textfield",
@@ -233,34 +234,37 @@ namespace JsonHtmlTable
 //        }
             dynamic stateAutoComplete = new
                                             {
-                                                name = name,
-                                                id = id,
-                                                caption = caption,
+                                                name,
+                                                id,
+                                                caption,
                                                 type = "text",
                                                 placeholder = "Type first letter of State",
-                                                autocomplete = new 
-                                                                   { 
-                                                                        list =  new dynamic[]
-                                                                         {
-                                                                             "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID",
-                                                                             "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC",
-                                                                             "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD",
-                                                                             "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"
-                                                                         }
+                                                autocomplete = new
+                                                                   {
+                                                                       list = new dynamic[]
+                                                                                  {
+                                                                                      "AK", "AL", "AR", "AZ", "CA", "CO"
+                                                                                      , "CT", "DC", "DE", "FL", "GA",
+                                                                                      "HI", "IA", "ID",
+                                                                                      "IL", "IN", "KS", "KY", "LA", "MA"
+                                                                                      , "MD", "ME", "MI", "MN", "MO",
+                                                                                      "MS", "MT", "NC",
+                                                                                      "ND", "NE", "NH", "NJ", "NM", "NV"
+                                                                                      , "NY", "OH", "OK", "OR", "PA",
+                                                                                      "RI", "SC", "SD",
+                                                                                      "TN", "TX", "UT", "VA", "VT", "WA"
+                                                                                      , "WI", "WV", "WY"
+                                                                                  }
                                                                    }
-
                                             };
-           
+
 
             return stateAutoComplete;
         }
 
-        
 
-        private dynamic GenderField()
+        protected dynamic GenderField()
         {
-
-
 //         {
 //                    "type" : "radiobuttons",
 //                    "caption" : "Sex",
@@ -275,58 +279,78 @@ namespace JsonHtmlTable
 
             dynamic gender = new
                                  {
-                                     name = name,
-                                     id = id,
-                                     caption = caption,
+                                     name,
+                                     id,
+                                     caption,
                                      type = "radiobuttons",
-                                     options = new {
-                                       f = "Female",
-                                       m = "Male"
-                                     }
+                                     options = new
+                                                   {
+                                                       f = "Female",
+                                                       m = "Male"
+                                                   }
                                  };
 
             return gender;
         }
 
-        private dynamic DatePicker()
+        protected dynamic DatePicker()
         {
             dynamic date = new
                                {
-                                   name = name,
-                                   id = id,
-                                   caption = caption,
+                                   name,
+                                   id,
+                                   caption,
                                    type = "text",
                                    datepicker = new
                                                     {
-                                                        showOn = "button" 
+                                                        showOn = "button"
                                                     }
                                };
-           
-          
+
+
             return date;
         }
 
-         private dynamic TextBox()
+        protected dynamic TextArea()
+        {
+            dynamic textbox = new
+                                  {
+                                      type = "textarea",
+                                      cols = 50,
+                                      rows = 10,
+                                      name,
+                                      id,
+                                      caption,
+                                      validate = new
+                                                     {
+                                                         required = true
+                                                     }
+                                  };
+
+            return textbox;
+        }
+
+
+        protected dynamic TextBox()
         {
             dynamic textbox = new
                                   {
                                       type = "text",
-                                      name = name,
-                                      id = id,
-                                      caption = caption,
+                                      name,
+                                      id,
+                                      caption,
                                       validate = new
-                                      {
-                                          required = true
-                                      }
+                                                     {
+                                                         required = true
+                                                     }
                                   };
 
             return textbox;
-
         }
 
-         private dynamic Select(List<string> enumList)
-         {
-             dynamic select = new 
+        protected dynamic Select(List<string> enumList)
+        {
+            dynamic select = new 
 //             select.Add("type", "select");
 //               select.Add("name", name);
 //               select.Add("id",  id);
@@ -334,27 +358,27 @@ namespace JsonHtmlTable
 //             select.Add("validate", new);
 //               select.Add("type", "select");
 
-             {
-                 type = "select",
-                 name = name,
-                 id = id,
-                 caption = caption,
-                 validate = new
-                 {
-                     required = true
-                 },
-                 options = new JsonObject()
-             };
+                                 {
+                                     type = "select",
+                                     name,
+                                     id,
+                                     caption,
+                                     validate = new
+                                                    {
+                                                        required = true
+                                                    },
+                                     options = new JsonObject()
+                                 };
 
-             foreach(var enumVal in enumList)
-             {
-                 select.options.Add(enumVal, enumVal);
-             }
-             return select;
-         }
+            foreach (string enumVal in enumList)
+            {
+                select.options.Add(enumVal, enumVal);
+            }
+            return select;
+        }
 
 
-        private dynamic BooleanCheckbox()
+        protected dynamic BooleanCheckbox()
         {
 //             {
 //                    "type" : "checkboxes",
@@ -375,88 +399,84 @@ namespace JsonHtmlTable
 
             dynamic boolCheckbox = new
                                        {
-                                           name = name,
-                                           id = id,
-                                           caption = caption,
+                                           name,
+                                           id,
+                                           caption,
                                            type = "checkbox"
                                        };
-          
+
             return boolCheckbox;
         }
-       
+
         public dynamic GenerateDynamicForm(Type type, string desc)
         {
 
+            
             PropertyInfo[] propertyInfos = type.GetProperties();
-
-
 
             var fieldsetElements = new List<dynamic>();
             dynamic element;
 
-            foreach (var pi in propertyInfos)
+            foreach (PropertyInfo pi in propertyInfos)
             {
-              
                 element = GetElement(pi);
-                
-                
-                if(element != null)
+
+
+                if (element != null)
                 {
-                    fieldsetElements.Add(new { type = "container", Class = "clear" });
-                    fieldsetElements.Add(new { type = "container", Class = "four columns" });
+                    fieldsetElements.Add(new {type = "container", Class = "clear"});
+                    fieldsetElements.Add(new {type = "container", Class = "three columns"});
                     fieldsetElements.Add(element);
-                    fieldsetElements.Add(new { type = "container", Class = "four columns" });
-                    
-//                    if (name.Equals("password"))
-//                    {
-//                        fieldsetElements.Add(new { type = "container", Class = "clear" }); 
-//                        fieldsetElements.Add(new { type = "container", Class = "four columns" });
-//                        fieldsetElements.Add(GetElement("password_Repeat", null));
-//                        fieldsetElements.Add(new { type = "container", Class = "four columns" });
-//                        
-//                    }
+                    fieldsetElements.Add(new {type = "container", Class = "five columns"});
                 }
             }
-            var fieldset = new { elements = fieldsetElements, type = "fieldset", caption = desc, Class="sixteen columns"};
-            var submitButton = new {type = "submit", value = desc };
+            var fieldset =
+                new
+                    {
+                        elements = fieldsetElements,
+                        type = "fieldset",
+                        caption = desc,
+                        Class = "sixteen columns",
+                        Id = "form-fieldset"
+                    };
+            var submitButton = new {type = "submit", value = desc};
             var formElements = new List<dynamic>();
             formElements.Add(fieldset);
             formElements.Add(submitButton);
-            return new { elements = formElements };
+            return new {elements = formElements};
         }
 
-        private dynamic GetElement(PropertyInfo pi)
+        protected dynamic GetElement(PropertyInfo pi)
         {
-            this.id = pi.Name;
-            this.name = pi.Name;
-            this.caption = pi.Name.Replace("_"," ");
+            id = pi.Name;
+            name = pi.Name;
+            caption = pi.Name.Replace("_", " ");
 
             if (pi.PropertyType.IsEnum)
             {
                 var enumList = new List<string>();
                 foreach (FieldInfo fInfo in pi.PropertyType.GetFields(BindingFlags.Public | BindingFlags.Static))
                 {
-                   enumList.Add(fInfo.GetValue(null).ToString());
-                   
+                    enumList.Add(fInfo.GetValue(null).ToString());
                 }
 
                 var e = new List<dynamic>();
                 e.Add(Select(enumList));
-                return new { type = "container", elements = e, Class = "eight columns elementWrapper" };
+                return new {type = "container", elements = e, Class = "eight columns elementWrapper"};
             }
 
             if (nameElementAction.ContainsKey(pi.Name.ToLower()))
             {
                 var e = new List<dynamic>();
                 e.Add(nameElementAction[pi.Name.ToLower()].Invoke());
-                return new { type = "container", elements = e, Class = "eight columns elementWrapper" };
+                return new {type = "container", elements = e, Class = "eight columns elementWrapper"};
             }
 
             if (typeElementAction.ContainsKey(pi.PropertyType))
             {
                 var e = new List<dynamic>();
                 e.Add(typeElementAction[pi.PropertyType].Invoke());
-                return new { type = "container", elements = e, Class = "eight columns elementWrapper" };
+                return new {type = "container", elements = e, Class = "eight columns elementWrapper"};
             }
 
             else return null;
@@ -469,11 +489,11 @@ namespace JsonHtmlTable
             var elements = new List<dynamic>();
             dynamic element;
 
-            foreach (var pi in propertyInfos)
+            foreach (PropertyInfo pi in propertyInfos)
             {
-                var type = pi.PropertyType;
-                var value = pi.GetValue(entity, null);
-                var name = pi.Name;
+                Type type = pi.PropertyType;
+                object value = pi.GetValue(entity, null);
+                string name = pi.Name;
                 element = GetElement(pi);
                 if (element != null)
                 {
@@ -483,16 +503,8 @@ namespace JsonHtmlTable
                     element.value = value;
 
                     elements.Add(element);
-
-//                    if (name.Equals("password"))
-//                    {
-//                        elements.Add(GetElement("passwordRepeat", null));
-//                    }
                 }
             }
         }
-
-
     }
-    
 }

@@ -1,5 +1,5 @@
 using JsonDataTable;
-using JsonHtmlTable;
+using JsonHtml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SqlTemplates.Tests

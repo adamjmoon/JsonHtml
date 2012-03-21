@@ -98,7 +98,7 @@
                               {
                                      "type" : "label",
                                      "id" : "saveReport",
-                                     "html" : "Save Report",
+                                     "html" : "Save Report and Run Query",
                                      "class" : "ui-corner-all ui-widget pad ui-state-focus",
                                      "style" : "width: 100px; margin:5px;"
                                 }

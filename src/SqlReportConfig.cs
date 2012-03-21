@@ -1,4 +1,4 @@
-﻿namespace JsonHtmlTable
+﻿namespace JsonHtml
 {
     public class SqlReportConfig
     {

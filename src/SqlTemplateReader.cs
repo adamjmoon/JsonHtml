@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace JsonHtmlTable
+namespace JsonHtml
 {
     public class SqlTemplateReader
     {
