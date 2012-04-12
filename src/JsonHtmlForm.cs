@@ -430,6 +430,11 @@ namespace JsonHtml
                     fieldsetElements.Add(new {type = "container", Class = "five columns"});
                 }
             }
+            return GetFieldSet(desc, fieldsetElements);
+        }
+
+        private dynamic GetFieldSet(string desc, List<dynamic> fieldsetElements)
+        {
             var fieldset =
                 new
                     {
@@ -482,19 +487,18 @@ namespace JsonHtml
             else return null;
         }
 
-        public void GenerateDynamicForm<T>(T entity)
+        public dynamic GenerateDynamicForm<T>(T entity)
         {
             PropertyInfo[] propertyInfos = entity.GetType().GetProperties();
 
             var elements = new List<dynamic>();
-            dynamic element;
 
             foreach (PropertyInfo pi in propertyInfos)
             {
                 Type type = pi.PropertyType;
                 object value = pi.GetValue(entity, null);
                 string name = pi.Name;
-                element = GetElement(pi);
+                var element = GetElement(pi);
                 if (element != null)
                 {
                     element.id = name;
